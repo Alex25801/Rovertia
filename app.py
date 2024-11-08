@@ -1,6 +1,5 @@
 import streamlit as st
 import random
-import matplotlib.pyplot as plt
 
 def humedad(min_valor=30, max_valor=60):
     """Función que define el parámetro óptimo de humedad"""
@@ -10,11 +9,11 @@ def humedad(min_valor=30, max_valor=60):
 def comparar_dato(dato_recibido, parametro_optimo, min_valor, max_valor):
     """Compara el dato recibido con los parámetros óptimos"""
     if min_valor <= dato_recibido <= max_valor:
-        return "✅ El valor está dentro del rango óptimo"
+        return "? El valor está dentro del rango óptimo"
     elif dato_recibido > max_valor:
-        return "❌ El valor está por encima del rango óptimo" 
+        return "? El valor está por encima del rango óptimo" 
     else:
-        return "❌ El valor está por debajo del rango óptimo"
+        return "? El valor está por debajo del rango óptimo"
 
 def main():
     st.markdown(
@@ -47,8 +46,8 @@ def main():
         unsafe_allow_html=True
     )
     
-    st.title("🌡️ Analizador de Humedad")
-    st.write("### Bienvenido! Soy Rover, tu asistente para analizar datos de humedad en la Tierra")
+    st.title("??? Analizador de Humedad")
+    st.write("### Bienvenido! Soy Rovert, tu asistente para analizar datos de humedad")
     
     # Valores mínimos y máximos fijos
     min_valor = 30
@@ -61,15 +60,13 @@ def main():
                                    value=45)
     
     if st.button("Analizar"):
-        if dato_recibido > 100:
-            return
         parametro_optimo = humedad(min_valor, max_valor)
         
         # Mostrar resultados
         st.write("---")
         st.write("### Resultados del análisis")
-        st.write(f"🎯 Rango óptimo: {min_valor}% - {max_valor}%")
-        st.write(f"📊 Valor analizado: {dato_recibido}%")
+        st.write(f"?? Rango óptimo: {min_valor}% - {max_valor}%")
+        st.write(f"?? Valor analizado: {dato_recibido}%")
         
         resultado = comparar_dato(dato_recibido, parametro_optimo, min_valor, max_valor)
         st.write(resultado)
@@ -80,19 +77,5 @@ def main():
         
         if min_valor <= dato_recibido <= max_valor:
             st.balloons()
-        
-        # Gráfica del resultado
-        # Crear la gráfica
-        plt.figure(figsize=(6, 4))
-        plt.bar(['Valor Analizado'], [dato_recibido], color=['blue'])
-        plt.ylim(0, 100)
-        plt.ylabel('Humedad (%)')
-        plt.title('Análisis de Humedad')
-        plt.axhline(y=min_valor, color='r', linestyle='--', label='Mínimo Óptimo')
-        plt.axhline(y=max_valor, color='r', linestyle='--', label='Máximo Óptimo')
-        plt.legend()
-        
-        # Mostrar la gráfica en Streamlit
-        st.pyplot(plt)
 if __name__ == "__main__":
     main()
