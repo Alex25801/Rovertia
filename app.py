@@ -46,7 +46,7 @@ def main():
         unsafe_allow_html=True
     )
     
-    st.title("??? Analizador de Humedad")
+    st.title("🌡️ Analizador de Humedad")
     st.write("### Bienvenido! Soy Rovert, tu asistente para analizar datos de humedad")
     
     # Valores mínimos y máximos fijos
