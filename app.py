@@ -9,11 +9,11 @@ def humedad(min_valor=30, max_valor=60):
 def comparar_dato(dato_recibido, parametro_optimo, min_valor, max_valor):
     """Compara el dato recibido con los parámetros óptimos"""
     if min_valor <= dato_recibido <= max_valor:
-        return "? El valor está dentro del rango óptimo"
+        return "✅ El valor está dentro del rango óptimo"
     elif dato_recibido > max_valor:
-        return "? El valor está por encima del rango óptimo" 
+        return "❌ El valor está por encima del rango óptimo" 
     else:
-        return "? El valor está por debajo del rango óptimo"
+        return "❌ El valor está por debajo del rango óptimo"
 
 def main():
     st.markdown(
