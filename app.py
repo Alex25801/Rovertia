@@ -1,5 +1,6 @@
 import streamlit as st
 import random
+import matplotlib.pyplot as plt
 
 def humedad(min_valor=30, max_valor=60):
     """Función que define el parámetro óptimo de humedad"""
@@ -47,7 +48,7 @@ def main():
     )
     
     st.title("🌡️ Analizador de Humedad")
-    st.write("### Bienvenido! Soy Rovert, tu asistente para analizar datos de humedad")
+    st.write("### Bienvenido! Soy Rover, tu asistente para analizar datos de humedad en la Tierra")
     
     # Valores mínimos y máximos fijos
     min_valor = 30
@@ -60,6 +61,8 @@ def main():
                                    value=45)
     
     if st.button("Analizar"):
+        if dato_recibido > 100:
+            return
         parametro_optimo = humedad(min_valor, max_valor)
         
         # Mostrar resultados
@@ -77,5 +80,19 @@ def main():
         
         if min_valor <= dato_recibido <= max_valor:
             st.balloons()
+        
+        # Gráfica del resultado
+        # Crear la gráfica
+        plt.figure(figsize=(6, 4))
+        plt.bar(['Valor Analizado'], [dato_recibido], color=['blue'])
+        plt.ylim(0, 100)
+        plt.ylabel('Humedad (%)')
+        plt.title('Análisis de Humedad')
+        plt.axhline(y=min_valor, color='r', linestyle='--', label='Mínimo Óptimo')
+        plt.axhline(y=max_valor, color='r', linestyle='--', label='Máximo Óptimo')
+        plt.legend()
+        
+        # Mostrar la gráfica en Streamlit
+        st.pyplot(plt)
 if __name__ == "__main__":
     main()
