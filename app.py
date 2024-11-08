@@ -65,8 +65,8 @@ def main():
         # Mostrar resultados
         st.write("---")
         st.write("### Resultados del análisis")
-        st.write(f"?? Rango óptimo: {min_valor}% - {max_valor}%")
-        st.write(f"?? Valor analizado: {dato_recibido}%")
+        st.write(f"🎯 Rango óptimo: {min_valor}% - {max_valor}%")
+        st.write(f"📊 Valor analizado: {dato_recibido}%")
         
         resultado = comparar_dato(dato_recibido, parametro_optimo, min_valor, max_valor)
         st.write(resultado)
